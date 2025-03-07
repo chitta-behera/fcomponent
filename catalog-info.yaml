@@ -1,8 +1,8 @@
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: Location
 metadata:
-  name: "fcomponent"
+  name: demo-template-location
+  description: A collection of software templates
 spec:
-  type: service
-  owner: user:guest
-  lifecycle: experimental
+  targets:
+    - ./scaffolder-templates/demo-template/template.yaml  # Make sure this path is correct
