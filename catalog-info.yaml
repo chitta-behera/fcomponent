@@ -5,4 +5,4 @@ metadata:
   description: A collection of software templates
 spec:
   targets:
-    - template.yaml  # Make sure this path is correct
+    - https://raw.githubusercontent.com/chitta-behera/fcomponent/refs/heads/master/template.yaml
