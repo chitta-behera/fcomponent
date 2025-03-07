@@ -1,0 +1,42 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: hello-template
+  title: Hello World Template
+  description: A simple Backstage template to create a Hello World project.
+spec:
+  owner: user@example.com
+  type: service
+
+  parameters:
+    - title: Provide some information
+      required:
+        - name
+      properties:
+        name:
+          title: Project Name
+          type: string
+          description: Name of the new Hello World project
+
+  steps:
+    - id: fetch-base
+      name: Fetch Base Repository
+      action: fetch:template
+      input:
+        url: ./skeleton
+        values:
+          name: ${{ parameters.name }}
+
+    - id: publish
+      name: Publish to GitHub
+      action: publish:github
+      input:
+        allowedHosts: ["github.com"]
+        description: "My Hello World template repository"
+        repoUrl: github.com/org/${{ parameters.name }}
+        repoVisibility: public
+
+  output:
+    links:
+      - title: Repository
+        url: ${{ steps.publish.output.remoteUrl }}
